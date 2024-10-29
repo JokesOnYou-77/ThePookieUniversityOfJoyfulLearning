@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pookie University</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .birthday-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border: 2px solid pink;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            text-align: center;
+        }
+        
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        /* Add some basic confetti styles */
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0.9;
+            animation: fall 3s forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="https://pluspng.com/img-png/hello-kitty-logo-png-transparent-hello-kitty-face-png-hello-kitty-png-vector-920x810.png" alt="Pookie University Logo">
+            <h1>Pookie University</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="./pookiee.html">Home 🏠</a></li>
+                <li><a href="./Programs.html">Programs 🎓</a></li>
+                <li><a href="./admission.html">Admissions ✨</a></li>
+                <li><a href="./campus-life.html">Campus Life 🌸</a></li>
+                <li><a href="#">Contact Us 📬</a></li>
+                <li><a href="#">Login / Signup 🐾</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Welcome to Pookie University!</h2>
+        <p>Where Learning is as Sweet as Friendship! 🍓</p>
+        <div class="hero-buttons">
+            <a href="./admission-form.html" class="btn apply-btn">🎓 Apply Now</a>
+            <a href="./alumni.html" class="btn alumni-btn">🎓 Alumni</a>
+        </div>
+    </section>
+
+    <!-- Birthday Popup -->
+    <div class="birthday-popup" id="birthdayPopup">
+        <h2>🎉 Happy Birthday! 🎉</h2>
+        <p>Wishing you a day full of joy and surprises!</p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <div class="confetti" id="confettiContainer"></div>
+
+    <!-- Scripts -->
+    <script>
+        function showBirthdayPopup() {
+            const today = new Date();
+            if (today.getMonth() === 10 && today.getDate() === 4) { // November 4th
+                document.getElementById('birthdayPopup').style.display = 'block';
+                createConfetti();
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('birthdayPopup').style.display = 'none';
+        }
+
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#FFC700', '#FF4C00', '#FF0000', '#00FF00', '#0000FF'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti-piece');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(confetti);
+
+                // Remove the confetti after falling
+                confetti.addEventListener('animationend', () => {
+                    confetti.remove();
+                });
+            }
+        }
+
+        window.onload = showBirthdayPopup;
+    </script>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">FAQ 💭</a>
+            <a href="#">Events Calendar 🗓️</a>
+            <a href="#">Student Portal 🐾</a>
+            <a href="./alumni.html">Alumni 💖</a>
+        </div>
+        <div class="social">
+            <p>Follow us:</p>
+            <a href="#">Instagram</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Facebook</a> | 
+            <a href="#">TikTok</a>
+        </div>
+        <p>&copy; 2024 Pookie University | Powered by Friendship 🌸</p>
+    </footer>
+
+</body>
+</html>
